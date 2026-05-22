@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rahul-ReplicaSet
+  labels:
+    app: web
+spec: #defines the behaviour of replicaset
+  replicas: 2
+  selector:
+    matchLabels:
+      web: nginx
+  template:
+    metadata: 
+      labels:
+        web: nginx    
+    spec: #DEFINES THE BEHAVIOUR OF THE PODS
+      containers: 
+        - image: nginx
+          name: nginx_container
+          ports: 
+            - containerPort: 80    
