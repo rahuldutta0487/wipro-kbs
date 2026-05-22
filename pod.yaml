@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-Pod
+spec:
+  containers:
+    - name: Rahul-veg
+      image: rahuldutta0487/vegetable-order:v1.0.0
+      ports:
+        - containerPort: 3000 
