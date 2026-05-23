@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: ghee-deployment
+  labels:
+    app: ghee-app
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: ghee
+
+  template:
+
+    metadata:
+      labels:
+        app: ghee
+
+    spec:
+      containers:
+
+        - name: ghee-container
+          image: rahuldutta0487/ghee:v1.0.0
+
+          ports:
+            - containerPort: 5656
