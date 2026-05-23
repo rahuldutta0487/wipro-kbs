@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels: 
+    first: app
+spec: # BEHAVIOUR OF THE REPLICASET
+  replicas: 3
+  selector: 
+    matchLabels: 
+      app: web
+  template: 
+    metadata: 
+      labels:
+        app: web
+    spec: # BEHAVIOUR OF THE POD
+      containers: 
+        - name: rahul-container
+          image: nginx
+          ports: 
+            - containerPort: 80
+                    
