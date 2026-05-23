@@ -27,10 +27,10 @@ metadata:
 spec:
   selector: 
     app: web
-ports:
-  - protocol: Tcp
+  ports:
+  - protocol: TCP
     port: 89 
     targetPort: 80
-type: ClusterIp                        
+  type: ClusterIp                        
 
 
