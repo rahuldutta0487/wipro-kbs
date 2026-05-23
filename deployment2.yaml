@@ -1,0 +1,30 @@
+# MY APP (MEDICARE APP) deployment 
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: med-deployment
+  labels:
+    app: med-app
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: med
+
+  template:
+
+    metadata:
+      labels:
+        app: med
+
+    spec:
+      containers:
+
+        - name: med-container
+          image: rahuldutta0487/medicare-simple:v1
+
+          ports:
+            - containerPort: 4000
