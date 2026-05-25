@@ -28,9 +28,9 @@ spec:
   selector: 
     app: web
   ports:
-  - protocol: TCP
-    port: 89 
-    targetPort: 80
+    - protocol: TCP
+      port: 89 
+      targetPort: 80
   type: ClusterIP                        
 
 
