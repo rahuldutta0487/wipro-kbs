@@ -11,13 +11,13 @@ spec:
   rules:
     - http:
         paths:
-        - path: /nginx(/|$)(.*)
+        - path: /
           pathtype: prefix
           backend:
             service:
-              name: rahul-service
+              name: fitness-service
               port:
-                number: 81
+                number: 5000
                     
 
 
