@@ -1,29 +1,93 @@
+
 apiVersion: apps/v1
+
 kind: Deployment
 
+ 
+
 metadata:
-  name: ghee-deployment
-  labels:
-    app: ghee-app
+
+  name: fitness-deployment
+
+  labels:
+
+    first: app
+
+ 
 
 spec:
-  replicas: 3
 
-  selector:
-    matchLabels:
-      app: ghee
+  replicas: 2
 
-  template:
+ 
 
-    metadata:
-      labels:
-        app: ghee
+  selector:
 
-    spec:
-      containers:
+    matchLabels:
 
-        - name: ghee-container
-          image: rahuldutta0487/ghee:v1.0.0
+      app: fitness
 
-          ports:
-            - containerPort: 5656
+ 
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: fitness
+
+ 
+
+    spec:
+
+      containers:
+
+        - name: fitness-container
+
+          image: 16akash/akash:v1.0.0
+
+ 
+
+          ports:
+
+            - containerPort: 5000
+
+ 
+
+---
+
+ 
+
+apiVersion: v1
+
+kind: Service
+
+ 
+
+metadata:
+
+  name: fitness-service
+
+ 
+
+spec:
+
+  selector:
+
+    app: fitness
+
+ 
+
+  ports:
+
+    - protocol: TCP
+
+      port: 80
+
+      targetPort: 5000
+
+ 
+
+  type: ClusterIP
+
