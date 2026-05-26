@@ -1,0 +1,41 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: fitness-route
+  namespace: rahul-ns
+
+spec:
+  parentRefs:
+    - name: rahul-gateway
+
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /fitness
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: fitness-service
+          port: 80
+
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /css
+        - path:
+            type: PathPrefix
+            value: /js
+        - path:
+            type: PathPrefix
+            value: /images
+        - path:
+            type: PathPrefix
+            value: /static
+      backendRefs:
+        - name: fitness-service
+          port: 80
