@@ -1,0 +1,57 @@
+---
+# =========================
+# MEDICARE APP DEPLOYMENT
+# =========================
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: med-deployment
+  labels:
+    app: med-app
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: med
+
+  template:
+    metadata:
+      labels:
+        app: med
+
+    spec:
+      containers:
+        - name: med-container
+          image: rahuldutta0487/medicare-simple:v1
+
+          ports:
+            - containerPort: 4000
+
+          env:
+            - name: MONGODB_URL
+              value: mongodb://mongodb-service:27017/medicare_db
+
+---
+# =========================
+# MEDICARE APP SERVICE
+# =========================
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: med-service
+
+spec:
+  selector:
+    app: med
+
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
+      nodePort: 30009
+
+  type: NodePort
